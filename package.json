@@ -1,0 +1,33 @@
+{
+  "name": "savory-restaurant-theme",
+  "version": "1.0.0",
+  "description": "Modern restaurant theme with complete food delivery functionality",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'No build process needed - static files'",
+    "dev": "npx serve . -l 3000"
+  },
+  "keywords": [
+    "restaurant",
+    "food",
+    "delivery",
+    "theme",
+    "template",
+    "html",
+    "css",
+    "javascript",
+    "responsive",
+    "modern"
+  ],
+  "author": "CertifySphere",
+  "license": "MIT",
+  "homepage": "https://restaurant-theme-demo.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/certifyspheres/restaurant-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/certifyspheres/restaurant-theme/issues"
+  }
+}
