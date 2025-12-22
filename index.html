@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savory - Modern Restaurant</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder">
+        <!-- Fallback header content -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h2>Savory</h2></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="profile.html" class="nav-link">Profile</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <div class="theme-controls">
+                        <select id="colorTheme" class="theme-selector">
+                            <option value="default">Default</option>
+                            <option value="warm">Warm</option>
+                            <option value="cool">Cool</option>
+                            <option value="elegant">Elegant</option>
+                        </select>
+                        <button id="themeToggle" class="theme-toggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                    <a href="signin.html" class="btn btn-primary" id="authButton">Sign In</a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <img src="https://picsum.photos/2070/800?random=1" alt="Delicious food" class="hero-bg-image" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--primary-color), var(--secondary-color))';">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Get food delivery to your doorstep</h1>
+                <p>Order from your favorite restaurants and get fresh food delivered fast</p>
+            </div>
+            <div class="delivery-form">
+                <div class="location-input">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" placeholder="Enter your delivery address" id="deliveryAddress">
+                    <button class="btn btn-primary" onclick="findRestaurants()">Find Food</button>
+                </div>
+                <div class="quick-suggestions">
+                    <span>Popular: </span>
+                    <button class="suggestion-tag" onclick="searchFood('pizza')">Pizza</button>
+                    <button class="suggestion-tag" onclick="searchFood('burger')">Burger</button>
+                    <button class="suggestion-tag" onclick="searchFood('sushi')">Sushi</button>
+                    <button class="suggestion-tag" onclick="searchFood('chinese')">Chinese</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Categories -->
+    <section class="quick-categories">
+        <div class="container">
+            <h2>What are you craving?</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="searchFood('pizza')">
+                    <div class="category-image">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                    <h3>Pizza</h3>
+                </div>
+                <div class="category-card" onclick="searchFood('burger')">
+                    <div class="category-image">
+                        <i class="fas fa-hamburger"></i>
+                    </div>
+                    <h3>Burgers</h3>
+                </div>
+                <div class="category-card" onclick="searchFood('sushi')">
+                    <div class="category-image">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3>Sushi</h3>
+                </div>
+                <div class="category-card" onclick="searchFood('chinese')">
+                    <div class="category-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Chinese</h3>
+                </div>
+                <div class="category-card" onclick="searchFood('mexican')">
+                    <div class="category-image">
+                        <i class="fas fa-pepper-hot"></i>
+                    </div>
+                    <h3>Mexican</h3>
+                </div>
+                <div class="category-card" onclick="searchFood('indian')">
+                    <div class="category-image">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Indian</h3>
+                </div>
+                <div class="category-card" onclick="searchFood('dessert')">
+                    <div class="category-image">
+                        <i class="fas fa-ice-cream"></i>
+                    </div>
+                    <h3>Desserts</h3>
+                </div>
+                <div class="category-card" onclick="searchFood('healthy')">
+                    <div class="category-image">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Healthy</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Restaurants -->
+    <section class="featured-restaurants">
+        <div class="container">
+            <h2>Popular restaurants</h2>
+            <div class="restaurants-grid">
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        <div class="restaurant-placeholder">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="delivery-time">25-35 min</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-header">
+                            <h3>Savory Bistro</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <p class="restaurant-cuisine">American • Italian • $$$</p>
+                        <div class="restaurant-details">
+                            <span class="delivery-fee">$2.99 delivery</span>
+                            <span class="min-order">$15 minimum</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        <div class="restaurant-placeholder">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="delivery-time">20-30 min</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-header">
+                            <h3>Golden Dragon</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.6</span>
+                            </div>
+                        </div>
+                        <p class="restaurant-cuisine">Chinese • Asian • $$</p>
+                        <div class="restaurant-details">
+                            <span class="delivery-fee">$1.99 delivery</span>
+                            <span class="min-order">$12 minimum</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        <div class="restaurant-placeholder">
+                            <i class="fas fa-pizza-slice"></i>
+                        </div>
+                        <div class="delivery-time">30-40 min</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-header">
+                            <h3>Bella Italia</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                        <p class="restaurant-cuisine">Italian • Pizza • $$$</p>
+                        <div class="restaurant-details">
+                            <span class="delivery-fee">Free delivery</span>
+                            <span class="min-order">$20 minimum</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        <div class="restaurant-placeholder">
+                            <i class="fas fa-hamburger"></i>
+                        </div>
+                        <div class="delivery-time">15-25 min</div>
+                        <button class="favorite-btn" onclick="toggleFavorite(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-header">
+                            <h3>Burger Palace</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                        <p class="restaurant-cuisine">American • Burgers • $$</p>
+                        <div class="restaurant-details">
+                            <span class="delivery-fee">$2.49 delivery</span>
+                            <span class="min-order">$10 minimum</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Dishes -->
+    <section class="popular-dishes">
+        <div class="container">
+            <h2>Popular dishes near you</h2>
+            <div class="dishes-grid">
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="dish-placeholder">
+                            <i class="fas fa-hamburger"></i>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h4>Signature Burger</h4>
+                        <p class="dish-restaurant">Burger Palace</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">$18.99</span>
+                            <button class="btn btn-small add-to-cart" data-item="Signature Burger" data-price="18.99">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="dish-placeholder">
+                            <i class="fas fa-pizza-slice"></i>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h4>Margherita Pizza</h4>
+                        <p class="dish-restaurant">Bella Italia</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">$22.99</span>
+                            <button class="btn btn-small add-to-cart" data-item="Margherita Pizza" data-price="22.99">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="dish-placeholder">
+                            <i class="fas fa-fish"></i>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h4>Salmon Sushi Roll</h4>
+                        <p class="dish-restaurant">Tokyo Sushi</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">$16.99</span>
+                            <button class="btn btn-small add-to-cart" data-item="Salmon Sushi Roll" data-price="16.99">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="dish-placeholder">
+                            <i class="fas fa-drumstick-bite"></i>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h4>Kung Pao Chicken</h4>
+                        <p class="dish-restaurant">Golden Dragon</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">$19.99</span>
+                            <button class="btn btn-small add-to-cart" data-item="Kung Pao Chicken" data-price="19.99">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="dish-placeholder">
+                            <i class="fas fa-pepper-hot"></i>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h4>Chicken Tacos</h4>
+                        <p class="dish-restaurant">Casa Mexico</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">$14.99</span>
+                            <button class="btn btn-small add-to-cart" data-item="Chicken Tacos" data-price="14.99">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="dish-placeholder">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h4>Butter Chicken</h4>
+                        <p class="dish-restaurant">Spice Garden</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">$21.99</span>
+                            <button class="btn btn-small add-to-cart" data-item="Butter Chicken" data-price="21.99">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="app-download">
+        <div class="container">
+            <div class="app-content">
+                <div class="app-info">
+                    <h2>Get the Savory app</h2>
+                    <p>Order faster and easier with our mobile app. Get exclusive deals and track your orders in real-time.</p>
+                    <div class="app-buttons">
+                        <a href="#" class="app-store-btn">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store">
+                        </a>
+                        <a href="#" class="app-store-btn">
+                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+                        </a>
+                    </div>
+                </div>
+                <div class="app-image">
+                    <div class="app-placeholder">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Mobile App</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Visit Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>123 Culinary Street<br>Foodie District, FD 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>(555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Hours</h4>
+                            <p>Mon-Thu: 11am-10pm<br>Fri-Sat: 11am-11pm<br>Sun: 12pm-9pm</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-sharing">
+                    <h4>Follow Us</h4>
+                    <div class="social-buttons">
+                        <button class="social-btn facebook" onclick="shareOnFacebook()">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button class="social-btn twitter" onclick="shareOnTwitter()">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button class="social-btn instagram" onclick="shareOnInstagram()">
+                            <i class="fab fa-instagram"></i>
+                        </button>
+                        <button class="social-btn linkedin" onclick="shareOnLinkedIn()">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button id="closeCart" class="close-cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be populated here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0.00</span></strong>
+            </div>
+            <a href="checkout.html" class="btn btn-primary btn-full">Checkout</a>
+        </div>
+    </div>
+
+    <!-- Cart Toggle Button -->
+    <button id="cartToggle" class="cart-toggle">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartCount" class="cart-count">0</span>
+    </button>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder">
+        <!-- Fallback footer content -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Savory</h3>
+                        <p>Your favorite food, delivered fast</p>
+                        <div class="social-links">
+                            <a href="#" onclick="shareOnFacebook()"><i class="fab fa-facebook"></i></a>
+                            <a href="#" onclick="shareOnTwitter()"><i class="fab fa-twitter"></i></a>
+                            <a href="#" onclick="shareOnInstagram()"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#careers">Careers</a></li>
+                            <li><a href="#press">Press</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#help">Help Center</a></li>
+                            <li><a href="#contact">Contact Us</a></li>
+                            <li><a href="#safety">Safety</a></li>
+                            <li><a href="#accessibility">Accessibility</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#terms">Terms of Service</a></li>
+                            <li><a href="#privacy">Privacy Policy</a></li>
+                            <li><a href="#cookies">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Savory Restaurant. All rights reserved.</p>
+                    <p class="created-by">Created by <a href="https://certifysphere.com/" target="_blank" rel="noopener">CertifySphere</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

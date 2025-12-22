@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Savory Restaurant</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder">
+        <!-- Fallback header content -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h2>Savory</h2></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link active">Menu</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                    <li><a href="profile.html" class="nav-link">Profile</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <div class="theme-controls">
+                        <select id="colorTheme" class="theme-selector">
+                            <option value="default">Default</option>
+                            <option value="warm">Warm</option>
+                            <option value="cool">Cool</option>
+                            <option value="elegant">Elegant</option>
+                        </select>
+                        <button id="themeToggle" class="theme-toggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                    <a href="signin.html" class="btn btn-primary" id="authButton">Sign In</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Menu Header -->
+    <section class="menu-header">
+        <div class="container">
+            <h1>Our Menu</h1>
+            <p>Discover our carefully curated selection of culinary delights</p>
+        </div>
+    </section>
+
+    <!-- Menu Categories -->
+    <section class="menu-section">
+        <div class="container">
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="appetizers">Appetizers</button>
+                <button class="filter-btn" data-category="mains">Main Courses</button>
+                <button class="filter-btn" data-category="desserts">Desserts</button>
+                <button class="filter-btn" data-category="drinks">Drinks</button>
+            </div>
+
+            <!-- Appetizers -->
+            <div class="menu-category" data-category="appetizers">
+                <h2>Appetizers</h2>
+                <div class="menu-items-list">
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Bruschetta Trio</h3>
+                            <span class="price">$12.99</span>
+                        </div>
+                        <p>Three varieties of toasted bread with fresh toppings</p>
+                        <button class="btn btn-small add-to-cart" data-item="Bruschetta Trio" data-price="12.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Calamari Fritti</h3>
+                            <span class="price">$14.99</span>
+                        </div>
+                        <p>Crispy fried calamari with marinara sauce</p>
+                        <button class="btn btn-small add-to-cart" data-item="Calamari Fritti" data-price="14.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Caprese Salad</h3>
+                            <span class="price">$11.99</span>
+                        </div>
+                        <p>Fresh mozzarella, tomatoes, and basil with balsamic glaze</p>
+                        <button class="btn btn-small add-to-cart" data-item="Caprese Salad" data-price="11.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Stuffed Mushrooms</h3>
+                            <span class="price">$13.99</span>
+                        </div>
+                        <p>Mushroom caps filled with herbs and cheese</p>
+                        <button class="btn btn-small add-to-cart" data-item="Stuffed Mushrooms" data-price="13.99">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Courses -->
+            <div class="menu-category" data-category="mains">
+                <h2>Main Courses</h2>
+                <div class="menu-items-list">
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Signature Burger</h3>
+                            <span class="price">$18.99</span>
+                        </div>
+                        <p>Premium beef patty with artisanal toppings and fries</p>
+                        <button class="btn btn-small add-to-cart" data-item="Signature Burger" data-price="18.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Grilled Salmon</h3>
+                            <span class="price">$24.99</span>
+                        </div>
+                        <p>Fresh Atlantic salmon with seasonal vegetables and lemon butter</p>
+                        <button class="btn btn-small add-to-cart" data-item="Grilled Salmon" data-price="24.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Truffle Pizza</h3>
+                            <span class="price">$22.99</span>
+                        </div>
+                        <p>Wood-fired pizza with truffle oil, mushrooms, and arugula</p>
+                        <button class="btn btn-small add-to-cart" data-item="Truffle Pizza" data-price="22.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Ribeye Steak</h3>
+                            <span class="price">$32.99</span>
+                        </div>
+                        <p>12oz ribeye with garlic mashed potatoes and asparagus</p>
+                        <button class="btn btn-small add-to-cart" data-item="Ribeye Steak" data-price="32.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Pasta Carbonara</h3>
+                            <span class="price">$19.99</span>
+                        </div>
+                        <p>Classic Italian pasta with pancetta, egg, and parmesan</p>
+                        <button class="btn btn-small add-to-cart" data-item="Pasta Carbonara" data-price="19.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Chicken Parmesan</h3>
+                            <span class="price">$21.99</span>
+                        </div>
+                        <p>Breaded chicken breast with marinara and melted mozzarella</p>
+                        <button class="btn btn-small add-to-cart" data-item="Chicken Parmesan" data-price="21.99">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desserts -->
+            <div class="menu-category" data-category="desserts">
+                <h2>Desserts</h2>
+                <div class="menu-items-list">
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Tiramisu</h3>
+                            <span class="price">$8.99</span>
+                        </div>
+                        <p>Classic Italian dessert with espresso and mascarpone</p>
+                        <button class="btn btn-small add-to-cart" data-item="Tiramisu" data-price="8.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Chocolate Lava Cake</h3>
+                            <span class="price">$9.99</span>
+                        </div>
+                        <p>Warm chocolate cake with molten center and vanilla ice cream</p>
+                        <button class="btn btn-small add-to-cart" data-item="Chocolate Lava Cake" data-price="9.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Crème Brûlée</h3>
+                            <span class="price">$8.99</span>
+                        </div>
+                        <p>Vanilla custard with caramelized sugar crust</p>
+                        <button class="btn btn-small add-to-cart" data-item="Crème Brûlée" data-price="8.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Cheesecake</h3>
+                            <span class="price">$7.99</span>
+                        </div>
+                        <p>New York style cheesecake with berry compote</p>
+                        <button class="btn btn-small add-to-cart" data-item="Cheesecake" data-price="7.99">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drinks -->
+            <div class="menu-category" data-category="drinks">
+                <h2>Drinks</h2>
+                <div class="menu-items-list">
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>House Wine</h3>
+                            <span class="price">$8.99</span>
+                        </div>
+                        <p>Red or white wine by the glass</p>
+                        <button class="btn btn-small add-to-cart" data-item="House Wine" data-price="8.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Craft Beer</h3>
+                            <span class="price">$6.99</span>
+                        </div>
+                        <p>Selection of local craft beers</p>
+                        <button class="btn btn-small add-to-cart" data-item="Craft Beer" data-price="6.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Signature Cocktail</h3>
+                            <span class="price">$12.99</span>
+                        </div>
+                        <p>Our mixologist's special creation</p>
+                        <button class="btn btn-small add-to-cart" data-item="Signature Cocktail" data-price="12.99">Add to Cart</button>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-item-header">
+                            <h3>Fresh Juice</h3>
+                            <span class="price">$4.99</span>
+                        </div>
+                        <p>Orange, apple, or cranberry juice</p>
+                        <button class="btn btn-small add-to-cart" data-item="Fresh Juice" data-price="4.99">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button id="closeCart" class="close-cart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0.00</span></strong>
+            </div>
+            <a href="checkout.html" class="btn btn-primary btn-full">Checkout</a>
+        </div>
+    </div>
+
+    <!-- Cart Toggle Button -->
+    <button id="cartToggle" class="cart-toggle">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartCount" class="cart-count">0</span>
+    </button>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder">
+        <!-- Fallback footer content -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Savory</h3>
+                        <p>Your favorite food, delivered fast</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="#careers">Careers</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#help">Help Center</a></li>
+                            <li><a href="#safety">Safety</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Savory Restaurant. All rights reserved.</p>
+                    <p class="created-by">Created by <a href="https://certifysphere.com/" target="_blank" rel="noopener">CertifySphere</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>

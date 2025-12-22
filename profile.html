@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Savory Restaurant</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder">
+        <!-- Fallback header content -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h2>Savory</h2></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="menu.html" class="nav-link">Menu</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                    <li><a href="profile.html" class="nav-link active">Profile</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <div class="theme-controls">
+                        <select id="colorTheme" class="theme-selector">
+                            <option value="default">Default</option>
+                            <option value="warm">Warm</option>
+                            <option value="cool">Cool</option>
+                            <option value="elegant">Elegant</option>
+                        </select>
+                        <button id="themeToggle" class="theme-toggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                    <button onclick="signOut()" class="btn btn-secondary">Sign Out</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Profile Header -->
+    <section class="profile-header">
+        <div class="container">
+            <div class="profile-info">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                    <button class="avatar-edit" onclick="editAvatar()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                <div class="profile-details">
+                    <h1 id="profileName">John Doe</h1>
+                    <p id="profileEmail">john.doe@example.com</p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-number" id="totalOrders">12</span>
+                            <span class="stat-label">Orders</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="favoriteItems">8</span>
+                            <span class="stat-label">Favorites</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="memberSince">2024</span>
+                            <span class="stat-label">Member Since</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Content -->
+    <section class="profile-content">
+        <div class="container">
+            <div class="profile-grid">
+                <!-- Profile Sidebar -->
+                <div class="profile-sidebar">
+                    <nav class="profile-nav">
+                        <button class="nav-item active" data-tab="orders">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>My Orders</span>
+                        </button>
+                        <button class="nav-item" data-tab="favorites">
+                            <i class="fas fa-heart"></i>
+                            <span>Favorites</span>
+                        </button>
+                        <button class="nav-item" data-tab="addresses">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Addresses</span>
+                        </button>
+                        <button class="nav-item" data-tab="payment">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Payment Methods</span>
+                        </button>
+                        <button class="nav-item" data-tab="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Profile Main Content -->
+                <div class="profile-main">
+                    <!-- Orders Tab -->
+                    <div class="tab-content active" id="orders">
+                        <div class="tab-header">
+                            <h2>My Orders</h2>
+                            <div class="order-filters">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="delivered">Delivered</button>
+                                <button class="filter-btn" data-filter="pending">Pending</button>
+                                <button class="filter-btn" data-filter="cancelled">Cancelled</button>
+                            </div>
+                        </div>
+                        <div class="orders-list" id="ordersList">
+                            <!-- Orders will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Favorites Tab -->
+                    <div class="tab-content" id="favorites">
+                        <div class="tab-header">
+                            <h2>Favorite Items</h2>
+                            <button class="btn btn-primary" onclick="addAllFavoritesToCart()">Add All to Cart</button>
+                        </div>
+                        <div class="favorites-grid" id="favoritesList">
+                            <!-- Favorites will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Addresses Tab -->
+                    <div class="tab-content" id="addresses">
+                        <div class="tab-header">
+                            <h2>Delivery Addresses</h2>
+                            <button class="btn btn-primary" onclick="addNewAddress()">Add New Address</button>
+                        </div>
+                        <div class="addresses-list" id="addressesList">
+                            <!-- Addresses will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods Tab -->
+                    <div class="tab-content" id="payment">
+                        <div class="tab-header">
+                            <h2>Payment Methods</h2>
+                            <button class="btn btn-primary" onclick="addPaymentMethod()">Add Payment Method</button>
+                        </div>
+                        <div class="payment-methods-list" id="paymentMethodsList">
+                            <!-- Payment methods will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div class="tab-content" id="settings">
+                        <div class="tab-header">
+                            <h2>Account Settings</h2>
+                        </div>
+                        <div class="settings-sections">
+                            <!-- Personal Information -->
+                            <div class="settings-section">
+                                <h3>Personal Information</h3>
+                                <form class="settings-form" id="personalInfoForm">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="firstName">First Name</label>
+                                            <input type="text" id="firstName" name="firstName" value="John">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lastName">Last Name</label>
+                                            <input type="text" id="lastName" name="lastName" value="Doe">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" value="john.doe@example.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone</label>
+                                        <input type="tel" id="phone" name="phone" value="(555) 123-4567">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update Information</button>
+                                </form>
+                            </div>
+
+                            <!-- Preferences -->
+                            <div class="settings-section">
+                                <h3>Preferences</h3>
+                                <div class="preference-item">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="emailNotifications" checked>
+                                        <span class="checkmark"></span>
+                                        Email notifications for orders
+                                    </label>
+                                </div>
+                                <div class="preference-item">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="smsNotifications">
+                                        <span class="checkmark"></span>
+                                        SMS notifications for delivery updates
+                                    </label>
+                                </div>
+                                <div class="preference-item">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="newsletter" checked>
+                                        <span class="checkmark"></span>
+                                        Newsletter and promotional offers
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Social Media Sharing -->
+                            <div class="settings-section">
+                                <h3>Social Media</h3>
+                                <p>Share your favorite dishes and orders with friends</p>
+                                <div class="social-connections">
+                                    <button class="social-connect-btn facebook" onclick="connectSocial('facebook')">
+                                        <i class="fab fa-facebook-f"></i>
+                                        <span>Connect Facebook</span>
+                                    </button>
+                                    <button class="social-connect-btn twitter" onclick="connectSocial('twitter')">
+                                        <i class="fab fa-twitter"></i>
+                                        <span>Connect Twitter</span>
+                                    </button>
+                                    <button class="social-connect-btn instagram" onclick="connectSocial('instagram')">
+                                        <i class="fab fa-instagram"></i>
+                                        <span>Connect Instagram</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Account Actions -->
+                            <div class="settings-section">
+                                <h3>Account Actions</h3>
+                                <div class="account-actions">
+                                    <button class="btn btn-secondary" onclick="changePassword()">Change Password</button>
+                                    <button class="btn btn-secondary" onclick="downloadData()">Download My Data</button>
+                                    <button class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Add Address Modal -->
+    <div id="addressModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Address</h3>
+                <button class="close-modal" onclick="closeModal('addressModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addressForm">
+                    <div class="form-group">
+                        <label for="addressLabel">Address Label</label>
+                        <input type="text" id="addressLabel" placeholder="e.g., Home, Work" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="streetAddress">Street Address</label>
+                        <input type="text" id="streetAddress" placeholder="123 Main St" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" placeholder="City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <select id="state" required>
+                                <option value="">Select State</option>
+                                <option value="CA">California</option>
+                                <option value="NY">New York</option>
+                                <option value="TX">Texas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="zipCode">ZIP Code</label>
+                            <input type="text" id="zipCode" placeholder="12345" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addressModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveAddress()">Save Address</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder">
+        <!-- Fallback footer content -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Savory</h3>
+                        <p>Your favorite food, delivered fast</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="#careers">Careers</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#help">Help Center</a></li>
+                            <li><a href="#safety">Safety</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Savory Restaurant. All rights reserved.</p>
+                    <p class="created-by">Created by <a href="https://certifysphere.com/" target="_blank" rel="noopener">CertifySphere</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
