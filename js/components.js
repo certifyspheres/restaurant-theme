@@ -59,19 +59,13 @@ class ComponentLoader {
     }
 
     initializeThemeSystem() {
-        // Initialize theme manager if it doesn't exist
-        if (!window.themeManager) {
-            // Import ThemeManager class from main.js
-            if (typeof ThemeManager !== 'undefined') {
-                window.themeManager = new ThemeManager();
-            } else {
-                // Create a simple theme manager if the class isn't available
-                this.createSimpleThemeManager();
-            }
-        } else {
-            // Re-initialize existing theme manager with new elements
-            window.themeManager.init();
-        }
+        // Always create a fresh theme manager to ensure proper initialization
+        this.createSimpleThemeManager();
+        
+        console.log('Theme system initialized with controls:', {
+            themeToggle: !!document.getElementById('themeToggle'),
+            colorTheme: !!document.getElementById('colorTheme')
+        });
     }
 
     createSimpleThemeManager() {
@@ -80,11 +74,16 @@ class ComponentLoader {
             currentColorTheme: localStorage.getItem('colorTheme') || 'default',
             
             init() {
+                console.log('Initializing theme manager...');
                 this.applyTheme();
-                this.setupEventListeners();
+                // Use setTimeout to ensure DOM is fully ready
+                setTimeout(() => {
+                    this.setupEventListeners();
+                }, 100);
             },
             
             applyTheme() {
+                console.log('Applying theme:', this.currentTheme, this.currentColorTheme);
                 document.documentElement.setAttribute('data-theme', this.currentTheme);
                 document.documentElement.setAttribute('data-color-theme', this.currentColorTheme);
                 
@@ -107,36 +106,54 @@ class ComponentLoader {
                 this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
                 localStorage.setItem('theme', this.currentTheme);
                 this.applyTheme();
+                console.log('Theme toggled to:', this.currentTheme);
             },
             
             setColorTheme(theme) {
                 this.currentColorTheme = theme;
                 localStorage.setItem('colorTheme', theme);
                 this.applyTheme();
+                console.log('Color theme changed to:', theme);
             },
             
             setupEventListeners() {
                 const themeToggle = document.getElementById('themeToggle');
                 const colorThemeSelect = document.getElementById('colorTheme');
 
+                console.log('Setting up theme event listeners...', {
+                    themeToggle: !!themeToggle,
+                    colorThemeSelect: !!colorThemeSelect
+                });
+
                 if (themeToggle) {
-                    // Remove existing listeners
-                    themeToggle.replaceWith(themeToggle.cloneNode(true));
-                    const newThemeToggle = document.getElementById('themeToggle');
-                    newThemeToggle.addEventListener('click', () => this.toggleTheme());
+                    // Remove any existing event listeners by cloning the element
+                    const newThemeToggle = themeToggle.cloneNode(true);
+                    themeToggle.parentNode.replaceChild(newThemeToggle, themeToggle);
+                    
+                    newThemeToggle.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.toggleTheme();
+                    });
+                    
+                    console.log('Theme toggle listener attached');
                 }
 
                 if (colorThemeSelect) {
-                    // Remove existing listeners
-                    colorThemeSelect.replaceWith(colorThemeSelect.cloneNode(true));
-                    const newColorThemeSelect = document.getElementById('colorTheme');
+                    // Remove any existing event listeners by cloning the element
+                    const newColorThemeSelect = colorThemeSelect.cloneNode(true);
+                    colorThemeSelect.parentNode.replaceChild(newColorThemeSelect, colorThemeSelect);
+                    
                     newColorThemeSelect.addEventListener('change', (e) => {
                         this.setColorTheme(e.target.value);
                     });
+                    
+                    console.log('Color theme selector listener attached');
                 }
             }
         };
         
+        // Initialize immediately
         window.themeManager.init();
     }
 

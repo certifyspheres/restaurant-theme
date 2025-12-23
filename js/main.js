@@ -401,15 +401,67 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.setAttribute('data-theme', savedTheme);
     document.documentElement.setAttribute('data-color-theme', savedColorTheme);
     
-    console.log('Main.js loaded - waiting for components...');
+    console.log('Main.js loaded - theme applied:', { theme: savedTheme, colorTheme: savedColorTheme });
+    
+    // Backup theme initialization if components don't load
+    setTimeout(() => {
+        if (!window.themeManager) {
+            console.log('Creating backup theme manager...');
+            initializeBackupThemeManager();
+        }
+    }, 2000);
 });
+
+// Backup theme manager for when components fail to load
+function initializeBackupThemeManager() {
+    const themeToggle = document.getElementById('themeToggle');
+    const colorThemeSelect = document.getElementById('colorTheme');
+    
+    if (themeToggle || colorThemeSelect) {
+        window.themeManager = {
+            currentTheme: localStorage.getItem('theme') || 'light',
+            currentColorTheme: localStorage.getItem('colorTheme') || 'default',
+            
+            toggleTheme() {
+                this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+                localStorage.setItem('theme', this.currentTheme);
+                document.documentElement.setAttribute('data-theme', this.currentTheme);
+                
+                const icon = themeToggle?.querySelector('i');
+                if (icon) {
+                    icon.className = this.currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                }
+                console.log('Backup theme toggled to:', this.currentTheme);
+            },
+            
+            setColorTheme(theme) {
+                this.currentColorTheme = theme;
+                localStorage.setItem('colorTheme', theme);
+                document.documentElement.setAttribute('data-color-theme', theme);
+                console.log('Backup color theme changed to:', theme);
+            }
+        };
+        
+        if (themeToggle) {
+            themeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.themeManager.toggleTheme();
+            });
+        }
+        
+        if (colorThemeSelect) {
+            colorThemeSelect.addEventListener('change', (e) => {
+                window.themeManager.setColorTheme(e.target.value);
+            });
+        }
+        
+        console.log('Backup theme manager initialized');
+    }
+}
 
 // Function to initialize managers - called by component loader
 function initializeManagers() {
-    if (!window.themeManager) {
-        window.themeManager = new ThemeManager();
-        window.themeManager.init(); // Explicitly call init after construction
-    }
+    // Don't create theme manager here - let components.js handle it
     if (!window.cartManager) {
         window.cartManager = new CartManager();
     }

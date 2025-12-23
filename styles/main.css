@@ -208,6 +208,13 @@ p {
   background-color: var(--surface-color);
   color: var(--text-primary);
   font-size: 0.9rem;
+  min-width: 100px;
+  cursor: pointer;
+}
+
+.theme-selector:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 .theme-toggle {
@@ -218,10 +225,21 @@ p {
   color: var(--text-primary);
   cursor: pointer;
   transition: var(--transition);
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .theme-toggle:hover {
   background-color: var(--surface-color);
+  border-color: var(--primary-color);
+}
+
+.theme-toggle:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 .hamburger {
