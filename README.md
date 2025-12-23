@@ -4,7 +4,7 @@ A professional, modern restaurant website theme with complete food delivery func
 
 ## 🚀 Live Demo
 
-**[View Live Demo](https://restaurant-theme-demo.vercel.app)**
+**[View Live Demo](https://restaurant-theme-kf51rh9kd-certifyspheres-projects.vercel.app)**
 
 ## ✨ Features
 
